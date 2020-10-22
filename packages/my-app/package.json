@@ -8,9 +8,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "classnames": "^2.2.6",
+    "less": "^3.12.2",
     "next": "9.5.5",
+    "next-images": "^1.6.0",
     "react": "17.0.0",
     "react-dom": "17.0.0",
+    "rsuite": "^4.8.4",
     "ui-components": "0.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.11.1"
   }
 }
