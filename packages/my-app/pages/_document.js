@@ -17,6 +17,15 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://rsms.me/inter/inter.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://unicons.iconscout.com/release/v2.0.1/css/unicons.css"
+          />
         </Head>
         <body>
         <Main />

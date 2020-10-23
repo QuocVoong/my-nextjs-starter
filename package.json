@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "lerna run build",
-    "bootstrap": "lerna run bootstrap",
+    "bootstrap": "lerna bootstrap",
     "dev": "lerna run dev --parallel",
-    "dev-app": "lerna run dev --scope my-app"
+    "dev-app": "lerna run dev --scope my-app",
+    "clean": "lerna clean"
   },
   "author": "",
   "license": "ISC",
