@@ -2,6 +2,7 @@ import 'rsuite/lib/styles/index.less';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import GlobalLayout                         from 'components/GlobalLayout';
 import MainLayout                           from 'components/MainLayout';
+import { themeBase }                        from 'ui-components/theme';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -11,18 +12,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-};
-
 export default function App({ Component, pageProps, router }) {
   if (['/login', '/error'].includes(router.pathname)) {
     return (
       <>
         <GlobalStyle/>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themeBase}>
           <Component {...pageProps} />
         </ThemeProvider>
       </>
@@ -32,7 +27,7 @@ export default function App({ Component, pageProps, router }) {
   return (
     <>
       <GlobalStyle/>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeBase}>
         <GlobalLayout>
           <MainLayout>
             <Component {...pageProps} />

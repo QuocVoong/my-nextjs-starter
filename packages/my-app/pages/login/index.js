@@ -1,13 +1,21 @@
-import React, { memo } from 'react';
-import FlexboxGrid     from 'rsuite/lib/FlexboxGrid';
-import RPanel          from 'rsuite/lib/Panel';
-import Form            from 'rsuite/lib/Form';
-import FormGroup       from 'rsuite/lib/FormGroup';
-import FormControl     from 'rsuite/lib/FormControl';
-import RButtonToolbar  from 'rsuite/lib/ButtonToolbar';
-import Button          from 'rsuite/lib/Button';
-import styled          from 'styled-components';
-import IconLogo        from 'assets/logo.svg';
+import React, { memo }              from 'react';
+import { get }                      from 'lodash';
+import { useRouter }                from 'next/router';
+import Link                         from 'next/link';
+import FlexboxGrid                  from 'rsuite/lib/FlexboxGrid';
+import RPanel                       from 'rsuite/lib/Panel';
+import Form                         from 'rsuite/lib/Form';
+import FormGroup                    from 'rsuite/lib/FormGroup';
+import FormControl                  from 'rsuite/lib/FormControl';
+import RButtonToolbar               from 'rsuite/lib/ButtonToolbar';
+import Button                       from 'rsuite/lib/Button';
+import styled                       from 'styled-components';
+import IconLogo                     from 'assets/logo.svg';
+import { Form as FinalForm, Field } from 'react-final-form';
+import { InputField } from 'components/FormField';
+import { getToken }                 from 'utils/auth';
+import { redirect }                 from 'utils/nav';
+import { required }                 from 'utils/validation';
 
 const LoginContainer = styled.div`
   width: 100vw;
@@ -21,7 +29,7 @@ const LoginContainer = styled.div`
 const ButtonToolbar = styled(RButtonToolbar)`
   display: flex;
   justify-content: space-between;
-  button {
+  a {
     color: white;
   }
 `;
@@ -40,6 +48,14 @@ const Panel = styled(RPanel)`
 `;
 
 const Login = () => {
+  const router = useRouter();
+
+  const redirectUrl = get(router, 'query.redirectUrl') || '/';
+
+  const handleLogin = () => {
+
+  };
+
   return (
     <LoginContainer>
       <FlexboxGrid justify="center">
@@ -48,28 +64,62 @@ const Login = () => {
             <img src={IconLogo} alt=""/>
             <h1>ez-POS</h1>
           </div>}>
-            <Form fluid>
-              <FormGroup>
-                <FormControl name="email" placeholder="Email"/>
-              </FormGroup>
-              <FormGroup>
-                <FormControl name="password" type="password" placeholder="Password"/>
-              </FormGroup>
-              <FormGroup>
-                <Button appearance="primary" block>Sign In</Button>
-              </FormGroup>
-              <FormGroup>
-                <ButtonToolbar>
-                  <Button appearance="link">Forgot password?</Button>
-                  <Button appearance="link">Create an Account</Button>
-                </ButtonToolbar>
-              </FormGroup>
-            </Form>
+            <FinalForm
+              onSubmit={handleLogin}
+              render={({ submitting, handleSubmit, submitError }) => (
+                <Form>
+                  <Field
+                    name="username"
+                    autoFocus={true}
+                    component={InputField}
+                    placeholder='Email'
+                    validate={required}
+                  />
+                  <Field
+                    name="password"
+                    autoFocus={true}
+                    component={InputField}
+                    placeholder='Password'
+                    validate={required}
+                  />
+                  {submitError && (
+                    <Text color="red">{submitError && t(submitError)}</Text>
+                  )}
+                </Form>
+              )}
+            >
+              {/*<FormGroup>*/}
+              {/*  <FormControl name="email" placeholder="Email"/>*/}
+              {/*</FormGroup>*/}
+              {/*<FormGroup>*/}
+              {/*  <FormControl name="password" type="password" placeholder="Password"/>*/}
+              {/*</FormGroup>*/}
+              {/*<FormGroup>*/}
+              {/*  <Button appearance="primary" block>Sign In</Button>*/}
+              {/*</FormGroup>*/}
+              {/*<FormGroup>*/}
+              {/*  <ButtonToolbar>*/}
+              {/*    <Link href='/forgot_password'>Forgot password?</Link>*/}
+              {/*    <Link href='/signup'>Create an Account</Link>*/}
+              {/*  </ButtonToolbar>*/}
+              {/*</FormGroup>*/}
+            </FinalForm>
           </Panel>
         </FlexboxGrid.Item>
       </FlexboxGrid>
     </LoginContainer>
   );
+};
+
+Login.getInitialProps = (ctx) => {
+  const token       = getToken(ctx);
+  const redirectUrl = get(ctx, 'query.redirectUrl');
+
+  if (token) {
+    redirect(ctx, redirectUrl || 'dashboard');
+  }
+
+  return {};
 };
 
 export default memo(Login);
