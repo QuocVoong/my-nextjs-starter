@@ -90,7 +90,6 @@ const InputWrapper = ({
           className="password-eye"
           type={inputType === PASSWORD ? 'eye-slash' : 'eye'}
           onMouseDown={handleClickEye}
-          size={inputSize}
         />
       )}
     </div>
@@ -125,34 +124,31 @@ const Input = styled(InputWrapper)`
   }
 
   ${Icon} {
+    position: absolute;
+    top: ${({ inputSize }) => inputSize === InputSize.SMALL ? '6px' : '8px'};
     color: ${(props) => props.theme.colors.dark85};
     line-height: inherit;
 
     &.prefix-icon {
       font-size: 16px;
-      position: absolute;
       left: 8px;
       z-index: 1;
     }
 
     &.suffix-icon {
-      position: absolute;
       right: 8px;
       z-index: 1;
     }
 
     &.password-eye {
-      position: absolute;
       right: 8px;
       z-index: 2;
-      right: 0;
       cursor: pointer;
     }
 
     &.clear-action {
       cursor: pointer;
       visibility: hidden;
-      position: absolute;
       right: 8px;
       z-index: 2;
       color: ${({ theme }) => theme.colors.grey45};

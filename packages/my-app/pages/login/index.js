@@ -2,20 +2,18 @@ import React, { memo }              from 'react';
 import { get }                      from 'lodash';
 import { useRouter }                from 'next/router';
 import Link                         from 'next/link';
-import FlexboxGrid                  from 'rsuite/lib/FlexboxGrid';
 import RPanel                       from 'rsuite/lib/Panel';
 import Form                         from 'rsuite/lib/Form';
-import FormGroup                    from 'rsuite/lib/FormGroup';
-import FormControl                  from 'rsuite/lib/FormControl';
 import RButtonToolbar               from 'rsuite/lib/ButtonToolbar';
 import Button                       from 'rsuite/lib/Button';
 import styled                       from 'styled-components';
 import IconLogo                     from 'assets/logo.svg';
 import { Form as FinalForm, Field } from 'react-final-form';
-import { InputField } from 'components/FormField';
+import { InputField }               from 'components/FormField';
 import { getToken }                 from 'utils/auth';
 import { redirect }                 from 'utils/nav';
 import { required }                 from 'utils/validation';
+import { Grid, GridItem }                 from 'ui-components';
 
 const LoginContainer = styled.div`
   width: 100vw;
@@ -58,8 +56,8 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <FlexboxGrid justify="center">
-        <FlexboxGrid.Item>
+      <Grid justify="center" classname="sm-3">
+        <GridItem>
           <Panel header={<div>
             <img src={IconLogo} alt=""/>
             <h1>ez-POS</h1>
@@ -68,45 +66,43 @@ const Login = () => {
               onSubmit={handleLogin}
               render={({ submitting, handleSubmit, submitError }) => (
                 <Form>
-                  <Field
-                    name="username"
-                    autoFocus={true}
-                    component={InputField}
-                    placeholder='Email'
-                    validate={required}
-                  />
-                  <Field
-                    name="password"
-                    autoFocus={true}
-                    component={InputField}
-                    placeholder='Password'
-                    validate={required}
-                  />
+                  <Grid gridRowGap={6}>
+                    <Field
+                      name="username"
+                      autoFocus={true}
+                      component={InputField}
+                      layout="vertical"
+                      inputSize="large"
+                      placeholder='Email'
+                      validate={required}
+                      required
+                    />
+                    <Field
+                      name="password"
+                      component={InputField}
+                      layout="vertical"
+                      inputSize="large"
+                      type='password'
+                      placeholder='Password'
+                      validate={required}
+                    />
+                    <Button appearance="primary" block>Sign In</Button>
+                      <ButtonToolbar>
+                        <Link href='/forgot_password'>Forgot password?</Link>
+                        <Link href='/signup'>Create an Account</Link>
+                      </ButtonToolbar>
+                  </Grid>
+
                   {submitError && (
                     <Text color="red">{submitError && t(submitError)}</Text>
                   )}
                 </Form>
               )}
             >
-              {/*<FormGroup>*/}
-              {/*  <FormControl name="email" placeholder="Email"/>*/}
-              {/*</FormGroup>*/}
-              {/*<FormGroup>*/}
-              {/*  <FormControl name="password" type="password" placeholder="Password"/>*/}
-              {/*</FormGroup>*/}
-              {/*<FormGroup>*/}
-              {/*  <Button appearance="primary" block>Sign In</Button>*/}
-              {/*</FormGroup>*/}
-              {/*<FormGroup>*/}
-              {/*  <ButtonToolbar>*/}
-              {/*    <Link href='/forgot_password'>Forgot password?</Link>*/}
-              {/*    <Link href='/signup'>Create an Account</Link>*/}
-              {/*  </ButtonToolbar>*/}
-              {/*</FormGroup>*/}
             </FinalForm>
           </Panel>
-        </FlexboxGrid.Item>
-      </FlexboxGrid>
+        </GridItem>
+      </Grid>
     </LoginContainer>
   );
 };

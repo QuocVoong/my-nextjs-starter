@@ -1,5 +1,5 @@
-import * as React           from 'react';
-import { Input, FormControl } from 'rsuite';
+import React                  from 'react';
+import { FormControl, Input } from 'ui-components';
 
 export const InputField = ({
                              input,
@@ -11,7 +11,7 @@ export const InputField = ({
                                      dirtySinceLastSubmit,
                                      submitting,
                                    } = {},
-                             label = '',
+                             label,
                              required,
                              layout,
                              className,

@@ -2,7 +2,7 @@ import 'rsuite/lib/styles/index.less';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import GlobalLayout                         from 'components/GlobalLayout';
 import MainLayout                           from 'components/MainLayout';
-import { themeBase }                        from 'ui-components/theme';
+import { themeBase }                        from 'ui-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
