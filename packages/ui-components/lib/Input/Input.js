@@ -105,7 +105,7 @@ const InputWrapper = ({
   );
 };
 
-export const Input = styled(InputWrapper)`
+const Input = styled(InputWrapper)`
   position: relative;
   width: 100%;
   display: flex;
@@ -169,3 +169,5 @@ export const Input = styled(InputWrapper)`
 Input.defaultProps = {
   inputSize: InputSize.DEFAULT,
 };
+
+export default Input;

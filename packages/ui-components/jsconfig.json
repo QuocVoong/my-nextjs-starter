@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "rootDirs": ["./lib", "./stories"],
+    "baseUrl": ".",
+    "paths": {
+      "@ui-components": ["./lib"],
+      "@ui-components*": ["./lib/*"],
+      "stories/*": ["./stories/*"]
+    },
+    "outDir": "dist"
+  }
+}

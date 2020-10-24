@@ -3,21 +3,11 @@ import {
   grid,
   space,
   flexbox,
-  gridArea,
   height,
   color,
 } from 'styled-system'
 
-export const GridItem = styled.div`
-  width: 100%;
-
-  ${height};
-  ${space};
-  ${gridArea}
-  ${flexbox};
-`
-
-export const Grid = styled.div`
+export default Grid = styled.div`
   display: grid;
   &&& {
     ${space};
@@ -26,4 +16,4 @@ export const Grid = styled.div`
     ${height};
     ${color};
   }
-`
+`;

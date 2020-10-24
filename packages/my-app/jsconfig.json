@@ -1,5 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "ui-components": [
+        "../ui-components/*"
+      ]
+    },
+    "module": "commonjs",
+    "target": "es6",
+    "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
   }
 }
