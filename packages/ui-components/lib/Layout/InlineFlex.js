@@ -7,7 +7,7 @@ import {
   height,
 } from 'styled-system'
 
-export default InlineFlex = styled.div`
+export const InlineFlex = styled.div`
   display: inline-flex;
 
   ${width};

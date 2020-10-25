@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { storiesOf }        from '@storybook/react'
-import { Grid }             from '../lib/Layout'
-import { Input, InputSize, InputKind } from '../lib/Input'
-import { Icon }             from '../lib/Icon'
+import { Grid, GridItem, Box }             from '../lib/Layout'
+import { Input, InputSize } from '../lib/Input'
 import { select, boolean } from '@storybook/addon-knobs'
 import { enumKeys, buildInfo } from '../utils'
 
@@ -29,22 +28,6 @@ stories.add('Basic', () => {
         placeholder="Password"
         inputSize={size}
       />
-      {/*<Input*/}
-      {/*  placeholder="Prefix Icon"*/}
-      {/*  inputSize={size}*/}
-      {/*  prefixIcon="search"*/}
-      {/*/>*/}
-      {/*<Input*/}
-      {/*  placeholder="Suffix Icon"*/}
-      {/*  inputSize={size}*/}
-      {/*  suffixIcon="search"*/}
-      {/*/>*/}
-      {/*<Input*/}
-      {/*  placeholder="Custom Icon"*/}
-      {/*  inputSize={size}*/}
-      {/*  prefixIcon={<Icon type="search" color="primary100" />}*/}
-      {/*  suffixIcon="search"*/}
-      {/*/>*/}
     </Grid>
   )
 })

@@ -4,7 +4,7 @@ import classnames                  from 'classnames';
 import { toString, isEmpty, trim } from 'lodash';
 import { Grid, GridItem }          from '../Layout';
 import { Icon }                    from '../Icon';
-import Text                        from '../Text';
+import { Text }                    from '../Text';
 import { mixins, keyframes }       from '../../styles';
 
 export const LayoutType = {
@@ -88,7 +88,7 @@ const FieldRender = ({
       className={classnames(className, { [`layout-${layout}`]: layout })}
       {...rest}
     >
-      {label && <Text className={labelClass} title={label} >
+      {label && <Text className={labelClass} title={label}>
         {label}
       </Text>}
       <div className="content">

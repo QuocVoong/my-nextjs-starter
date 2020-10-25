@@ -74,7 +74,7 @@ export const TextWraper = ({
   );
 };
 
-export default Text = styled(TextWraper)`
+export const Text = styled(TextWraper)`
   ${mixins.size(TextSize.XL, SIZES.xl)};
   ${mixins.size(TextSize.LG, SIZES.lg)};
   ${mixins.size(TextSize.MD, SIZES.md)};

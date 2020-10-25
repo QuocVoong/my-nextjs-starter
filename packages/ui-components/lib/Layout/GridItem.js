@@ -6,7 +6,7 @@ import {
   height,
 } from 'styled-system'
 
-export default GridItem = styled.div`
+export const GridItem = styled.div`
   width: 100%;
 
   ${height};

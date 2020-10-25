@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <Grid justify="center" classname="sm-3">
+      <Grid justify="center">
         <GridItem>
           <Panel header={<div>
             <img src={IconLogo} alt=""/>

@@ -9,7 +9,7 @@ import {
   position,
 } from 'styled-system'
 
-export default Flex = styled.div`
+export const Flex = styled.div`
   display: flex;
 
   ${layout};

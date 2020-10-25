@@ -7,7 +7,7 @@ import {
   color,
 } from 'styled-system'
 
-export default Grid = styled.div`
+export const Grid = styled.div`
   display: grid;
   &&& {
     ${space};

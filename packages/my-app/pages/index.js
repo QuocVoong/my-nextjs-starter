@@ -1,4 +1,6 @@
-import styled from 'styled-components'
+import styled     from 'styled-components';
+import Router     from 'next/router';
+import { Flex, Text, Input, Button } from 'ui-components';
 
 const Title = styled.h1`
   font-size: 50px;
@@ -6,5 +8,8 @@ const Title = styled.h1`
 `;
 
 export default function Home() {
-  return <Title>My Home</Title>
+  return <>
+    <Title>My Home</Title>
+    <Button onClick={() => Router.push('login')}>Login</Button>
+  </>;
 }

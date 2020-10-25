@@ -6,7 +6,7 @@ import {
   color,
 } from 'styled-system'
 
-export default Box = styled.div`
+export const Box = styled.div`
   ${space};
   ${layout};
   ${flexbox};
