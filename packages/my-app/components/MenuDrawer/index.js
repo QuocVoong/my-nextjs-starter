@@ -17,8 +17,8 @@ const navItems = [
     eventKey: 2
   },
   {
-    name:     'Customer',
-    to:       'customer',
+    name:     'User',
+    to:       'user',
     icon:     <Icon icon="group"/>,
     eventKey: 3
   },

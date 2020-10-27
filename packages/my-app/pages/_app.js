@@ -1,4 +1,5 @@
 import 'rsuite/lib/styles/index.less';
+import { ReactQueryDevtools } from 'react-query-devtools'
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import GlobalLayout                         from 'components/GlobalLayout';
 import MainLayout                           from 'components/MainLayout';

@@ -1,9 +1,6 @@
-import React, { memo, useEffect, useState } from 'react';
-import axios                                from 'axios';
-import useAxios                             from 'axios-hooks';
-import { isFunction, get }                  from 'lodash';
+import axios from 'axios';
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:4001';
 const COMMAND      = 'command';
 const QUERY        = 'query';
 
@@ -18,8 +15,7 @@ axios.interceptors.response.use(response => {
 export const command = ({
                           data,
                           headers = {
-                            'Cache-Control': 'no-cache',
-                            'Content-Type':  'application/json',
+                            'Content-Type': 'application/json',
                           }
                         }) => {
   return axios({
@@ -33,8 +29,7 @@ export const command = ({
 export const query = ({
                         data,
                         headers = {
-                          'Cache-Control': 'no-cache',
-                          'Content-Type':  'application/json',
+                          'Content-Type': 'application/json',
                         },
                         cancelToken
                       }) => {
@@ -46,69 +41,5 @@ export const query = ({
     cancelToken
   });
 };
-
-export const useQuery = ({
-                           data,
-                           headers = {
-                             'Cache-Control': 'no-cache',
-                             'Content-Type':  'application/json',
-                           },
-                         }) => {
-  return useAxios({
-    method: 'post',
-    url:    `${API_ENDPOINT}/${QUERY}`,
-    data,
-    headers,
-  }, {
-    useCache: false
-  });
-};
-
-export const Query = memo(({
-                             data,
-                             headers = {
-                               'Cache-Control': 'no-cache',
-                               'Content-Type':  'application/json',
-                             },
-                             children,
-                           }) => {
-  const cancelSourceRef   = React.useRef();
-  const [state, setState] = useState({
-    isLoading: false,
-    error:     null,
-    data:      null,
-  });
-
-  useEffect(() => {
-    cancelSourceRef.current = axios.CancelToken.source();
-
-    (async () => {
-      try {
-        setState(prev => ({ ...prev, isLoading: true }));
-        const resp = await query({
-          data,
-          headers,
-          cancelToken: cancelSourceRef.current.token,
-        });
-        setState(prev => ({ ...prev, data: get(resp, 'data.result.items'), isLoading: false }));
-      } catch (error) {
-        const err = get(error, 'message');
-        setState(prev => ({ ...prev, error: !err ? null : error, isLoading: false }));
-      }
-    })();
-
-    return () => cancelSourceRef.current.cancel();
-  }, [data]);
-
-  if (!isFunction(children)) {
-    throw new Error('children must be a function');
-  }
-
-  return children({
-    isLoading: state.isLoading,
-    data:      state.data,
-    error:     !get(state.error, 'message') ? state.error : null,
-  });
-});
 
 export default axios;
