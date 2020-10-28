@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default function App({ Component, pageProps, router }) {
-  if (['/login', '/error'].includes(router.pathname)) {
+  if (['/login', '/error', '/404'].includes(router.pathname)) {
     return (
       <>
         <GlobalStyle/>
